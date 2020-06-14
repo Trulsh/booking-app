@@ -1,0 +1,55 @@
+<div class="wrapper three-cols">
+  <!--SIDEBAR-->
+    <app-card title="Search" customCls="side-bar" [isScrollable]="true">
+      <app-hotel-form [text]="text" (search)="searchHotel($event)"></app-hotel-form>
+
+      <app-separator></app-separator>
+
+
+        <app-hotel-lists
+          [hotels]="hotels"
+          [text]="text"
+          [active]="active"
+          (setActive)="setActive($event)"
+        ></app-hotel-lists>
+      </app-card>
+
+  <!--MAP-->
+  <app-card customCls="map" [padding]="false">
+      <app-gmap [active]="active"></app-gmap>
+  </app-card>
+
+  <!--INFO BOX-->
+  <app-card [centeredContent]="true">
+      <!--<img src="https://picsum.photos/400/200/?image=12" width="100%" height="200">-->
+
+      <app-rates [active]="active"></app-rates>
+
+      <app-separator></app-separator>
+
+      <app-stars [stars]="active?.stars"></app-stars>
+
+      <br>
+
+      <app-reservations [active]="active" (addToCart)="cart.addToCart($event, active)"></app-reservations>
+    </app-card>
+  <!--IMAGE GALLERY-->
+  <app-card [isScrollable]="true" customCls="gallery">
+    <app-image-gallery [active]="active" [activeImage]="activeImage"></app-image-gallery>
+  </app-card>
+
+  <!--SERVICES-->
+  <app-card title="Services" customCls="services" [isScrollable]="true">
+    <app-services [active]="active"></app-services>
+  </app-card>
+
+  <!--CONTACT FORM-->
+  <app-card title="Contacts" customCls="contact">
+      <app-contact-form (send)="sendEmail($event)"></app-contact-form>
+  </app-card>
+  </div>
+
+
+
+
+
